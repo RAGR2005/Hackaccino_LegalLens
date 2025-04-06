@@ -51,6 +51,7 @@ Install the required Node.js packages:
 
 bash
 npm install
+Fir next.js issue - npm install next react react-dom --legacy-peer-deps
 
 
 Create a .env.local file with the following variables:
