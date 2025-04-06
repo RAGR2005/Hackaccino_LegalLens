@@ -1,8 +1,8 @@
 import type React from "react"
-import "@/app/globals.css"
+import "./globals.css"
 import { Inter } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
-import EnhancedBackground from "@/components/enhanced-background"
+import { ThemeProvider } from "../components/theme-provider"
+import BackgroundWrapper from "../components/background-wrapper"
 import { ClerkProvider } from "@clerk/nextjs"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -21,9 +21,9 @@ export default function RootLayout({
   return (
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>
+        <body className={inter.className} suppressHydrationWarning>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-            <EnhancedBackground />
+            <BackgroundWrapper />
             {children}
           </ThemeProvider>
         </body>
@@ -31,4 +31,3 @@ export default function RootLayout({
     </ClerkProvider>
   )
 }
-import './globals.css'

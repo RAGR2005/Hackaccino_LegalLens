@@ -1,3 +1,4 @@
+'use client'
 import { FileText, Shield, BookOpen, HeadphonesIcon, ArrowRight, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"

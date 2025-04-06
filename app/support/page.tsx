@@ -7,13 +7,45 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Mail, Phone, MessageSquare } from "lucide-react"
+import { Mail, Phone, MessageSquare, Download } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
 import ChatbotButton from "@/components/chatbot-button"
 
+const resources = [
+  {
+    title: "Understanding IPC Sections",
+    description: "A comprehensive guide to common IPC sections and their applications",
+    fileName: "understanding-ipc-sections.pdf"
+  },
+  {
+    title: "FIR Filing Guide",
+    description: "Step-by-step instructions for filing an effective FIR",
+    fileName: "fir-filing-guide.pdf"
+  },
+  {
+    title: "Legal Rights Handbook",
+    description: "Know your rights during legal proceedings and police investigations",
+    fileName: "legal-rights-handbook.pdf"
+  },
+  {
+    title: "Evidence Collection Guide",
+    description: "How to properly collect and preserve evidence for your case",
+    fileName: "evidence_collection_guide.pdf"
+  }
+]
+
 export default function SupportPage() {
+  const handleDownload = (fileName: string) => {
+    const link = document.createElement('a')
+    link.href = `/pdfs/${fileName}`
+    link.download = fileName
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -66,7 +98,7 @@ export default function SupportPage() {
                             <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                             <div>
                               <h3 className="font-medium">Phone Support</h3>
-                              <p className="section-text">+91 98765 43210</p>
+                              <p className="section-text">+91 82728 05101</p>
                               <p className="text-sm section-text">Available Mon-Fri, 9AM-6PM</p>
                             </div>
                           </div>
@@ -226,24 +258,7 @@ export default function SupportPage() {
                           animate={{ opacity: 1 }}
                           transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
                         >
-                          {[
-                            {
-                              title: "Understanding IPC Sections",
-                              description: "A comprehensive guide to common IPC sections and their applications",
-                            },
-                            {
-                              title: "FIR Filing Guide",
-                              description: "Step-by-step instructions for filing an effective FIR",
-                            },
-                            {
-                              title: "Legal Rights Handbook",
-                              description: "Know your rights during legal proceedings and police investigations",
-                            },
-                            {
-                              title: "Evidence Collection Guide",
-                              description: "How to properly collect and preserve evidence for your case",
-                            },
-                          ].map((resource, index) => (
+                          {resources.map((resource, index) => (
                             <motion.div
                               key={index}
                               className="border rounded-lg p-4 hover:bg-muted/50 transition-colors dark:border-primary/20 dark:hover:bg-primary/10"
@@ -253,7 +268,12 @@ export default function SupportPage() {
                             >
                               <h3 className="font-medium mb-2">{resource.title}</h3>
                               <p className="text-sm section-text mb-3">{resource.description}</p>
-                              <Button variant="link" className="p-0 h-auto text-primary">
+                              <Button 
+                                variant="link" 
+                                className="p-0 h-auto text-primary flex items-center gap-2"
+                                onClick={() => handleDownload(resource.fileName)}
+                              >
+                                <Download className="h-4 w-4" />
                                 Download PDF
                               </Button>
                             </motion.div>

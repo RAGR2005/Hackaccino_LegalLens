@@ -8,6 +8,7 @@ import { Search } from "lucide-react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export default function HandbookPage() {
   return (
@@ -80,17 +81,20 @@ export default function HandbookPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
                       >
-                        <Card className="cursor-pointer hover:shadow-md transition-shadow dark:bg-black/50">
-                          <CardHeader className="pb-2">
-                            <CardTitle className="text-lg">{item.section}</CardTitle>
-                            <CardDescription className="section-text">{item.title}</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <Button variant="link" className="p-0 h-auto text-primary">
-                              View Details
-                            </Button>
-                          </CardContent>
-                        </Card>
+                        <Link 
+                          href={`/handbook/section-${item.section.split(" ")[1]}`}
+                          className="block"
+                        >
+                          <Card className="cursor-pointer hover:shadow-md transition-shadow dark:bg-black/50">
+                            <CardHeader className="pb-2">
+                              <CardTitle className="text-lg">{item.section}</CardTitle>
+                              <CardDescription className="section-text">{item.title}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="text-primary hover:underline">View Details</div>
+                            </CardContent>
+                          </Card>
+                        </Link>
                       </motion.div>
                     ))}
                   </motion.div>

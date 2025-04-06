@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { Scale, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin} from "lucide-react"
 
@@ -105,7 +107,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-primary shrink-0" />
-              <span className="text-muted-foreground">+91 98765 43210</span>
+              <span className="text-muted-foreground">+91 82728 05101</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail className="h-5 w-5 text-primary shrink-0" />
